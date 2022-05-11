@@ -1,11 +1,11 @@
-import { MongoClient } from "mongodb";
-import dotenv from "dotenv";
-dotenv.config();
+import 'dotenv/config.js';
+import mongoose from "mongoose";
 
-const mongoClient = new MongoClient(process.env.MONGO_URI);
+const dbConnection = () => {
+    mongoose.connect(process.env.MONGO_URI);
+    const db = mongoose.connection.on('error', (e) => { console.log(e.message); }).once('open', () => {
+        console.log('database connected.');
+    });
+}
 
-await mongoClient.connect();
-
-const db = mongoClient.db("Drizzard_Db");
-
-export default db;
+export default dbConnection;
