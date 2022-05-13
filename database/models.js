@@ -5,3 +5,9 @@ export const User = mongoose.model('Users', {
     email: String,
     password: String
 });
+
+export const Session = mongoose.model('session', {
+    userId: String,
+    name: String,
+    token: String
+});
