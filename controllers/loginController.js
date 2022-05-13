@@ -1,6 +1,6 @@
 import { getUser,setSession } from "../database/actions.js";
 import bcrypt from "bcrypt";
-import { v4 as uuid} from "uuid";
+import jwt from 'jsonwebtoken';
 
 export default async function login (req, res) {
     const user = res.locals.body;
@@ -8,9 +8,11 @@ export default async function login (req, res) {
     
     if (hasUser) {
         if(bcrypt.compareSync(user.password, hasUser.password)){
-            const token = uuid();
-            const session = { userId: hasUser._id, name: user.name ,token: token };
-            setSession(session);
+            const jwtKey = process.env.JWT_SECRET;
+            const session = { userId: hasUser._id, name: hasUser.name, email: hasUser.email };
+            const token = jwt.sign(session, jwtKey);
+            console.log(session)
+            setSession({...session,token});
             res.send({ name: hasUser.name, token: token });    
         }else{
             res.status(401).send("senha incorreta")
