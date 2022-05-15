@@ -1,4 +1,4 @@
-import { User, Session } from "./models.js";
+import { User, Session, Games } from "./models.js";
 
 export const setUser = async (body) => {
     const createdUser = await User.create(body);
@@ -13,4 +13,9 @@ export const getUser = async (body) => {
 export const setSession = async (body) => {
     const session = await Session.create(body);
     return session;
+}
+
+export const getGames = async () => {
+    const games = await Games.find({});
+    return games;
 }
