@@ -25,6 +25,11 @@ export const getGames = async () => {
     return games;
 }
 
+export const searchGames = async (query) => {
+    const games = await Games.find(query);
+    return games;
+}
+
 export const getSingleGame = async (id) => {
     const game = await Games.findOne(id);
     return game;
