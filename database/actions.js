@@ -19,3 +19,8 @@ export const getGames = async () => {
     const games = await Games.find({});
     return games;
 }
+
+export const getSingleGame = async (id) => {
+    const game = await Games.findOne(id);
+    return game;
+}
