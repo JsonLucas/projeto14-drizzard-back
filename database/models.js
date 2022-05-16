@@ -22,9 +22,8 @@ export const Games = mongoose.model('games', {
 
 export const Orders = mongoose.model('Orders', {
     userId: String,
-    items: Array,
-    value: Number,
-    destination: Object,
-    paymentType: String,
+    pedido: Array,
+    localEnvio: Object,
+    dadosPagamento: Object,
     createdAt: String //coloca como string pq fica mais facil de fazer a formatação
 });
