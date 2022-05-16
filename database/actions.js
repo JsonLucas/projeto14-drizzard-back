@@ -15,8 +15,18 @@ export const setSession = async (body) => {
     return session;
 }
 
+export const deleteSession = async (userId) => {
+    const logout = await Session.findOneAndDelete(userId);
+    return logout;
+}
+
 export const getGames = async () => {
     const games = await Games.find({});
+    return games;
+}
+
+export const searchGames = async (query) => {
+    const games = await Games.find(query);
     return games;
 }
 

@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 export default async function authToken(req, res, next) {
-    const token = req.headers
+    const {token} = req.headers;
     const jwtKey = process.env.JWT_SECRET;
 
     if(token){
